@@ -8,8 +8,6 @@ import Footer from './Footer';
 class TodoApp extends Component {
 
     render() {
-        const {params} = this.props;
-
         return (
             <div>
                 <Container fluid>
@@ -28,7 +26,7 @@ class TodoApp extends Component {
                 <Container>
                     <Grid centered columns={2}>
                         <Grid.Column>
-                            <VisibleTodoList filter={params.filter || 'all'}/>
+                            <VisibleTodoList/>
                         </Grid.Column>
                     </Grid>
                 </Container>
