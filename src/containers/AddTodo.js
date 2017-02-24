@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Button} from 'semantic-ui-react';
 
-import {addTodo} from '../actions/todo'
+import {addTodo} from '../actions'
 
 class AddTodo extends Component {
 
