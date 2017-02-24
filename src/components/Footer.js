@@ -4,11 +4,11 @@ import FilterLink from '../containers/FilterLink';
 
 const Footer = () => (
     <div>
-            <FilterLink filter='SHOW_ALL'>All</FilterLink>
+        <FilterLink filter='all'>All</FilterLink>
         <span style={{width: '5px', display: 'inline-block'}}/>
-            <FilterLink filter='SHOW_ACTIVE'>Active</FilterLink>
+        <FilterLink filter='active'>Active</FilterLink>
         <span style={{width: '5px', display: 'inline-block'}}/>
-            <FilterLink filter='SHOW_COMPLETED'>Competed</FilterLink>
+        <FilterLink filter='completed'>Competed</FilterLink>
     </div>
 );
 

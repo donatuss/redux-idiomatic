@@ -1,16 +1,28 @@
-import {connect} from 'react-redux';
+import React, {PropTypes} from 'react';
+import {Link} from 'react-router';
+import {Button, Icon} from 'semantic-ui-react';
 
-import Link from '../components/Link';
-import {setVisibilityFilter} from '../actions/visibilityFilter';
+const FilterLink = ({filter, children}, {router}) => {
 
-const mapStateToProps = (state, ownProps) => ({
-    active: ownProps.filter === state.visibilityFilter
-});
+    const isActive = router.isActive('/' + (filter === 'all' ? '' : filter));
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-    onClick() {
-        dispatch(setVisibilityFilter(ownProps.filter));
-    }
-});
+    return (
+        <Link to={filter === 'all' ? '/' : filter}>
+            <Button active={isActive} size="small">
+                <Icon name={isActive ? 'checkmark' : null}/>{children}<Icon />
+            </Button>
+        </Link>
+    );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Link);
+};
+
+FilterLink.contextTypes = {
+    router: React.PropTypes.object
+};
+
+FilterLink.propTypes = {
+    filter: PropTypes.oneOf(['all', 'completed', 'active']).isRequired,
+    children: PropTypes.node.isRequired,
+};
+
+export default FilterLink;
