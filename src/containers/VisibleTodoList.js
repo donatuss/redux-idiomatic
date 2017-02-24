@@ -3,27 +3,11 @@ import {withRouter} from 'react-router';
 
 import TodoList from '../components/TodoList';
 import {toggleTodo} from '../actions/todo';
-
-const getVisibleTodos = (todos, filter) => {
-    switch (filter) {
-        case 'all':
-            return todos;
-        case 'completed':
-            return todos.filter(
-                t => t.completed
-            );
-        case 'active':
-            return todos.filter(
-                t => !t.completed
-            );
-        default:
-            throw new Error(`Unknown filter: ${filter}`);
-    }
-};
+import {getVisibleTodos} from '../reducers';
 
 const mapStateToProps = (state, {params}) => ({
     todos: getVisibleTodos(
-        state.todos,
+        state,
         params.filter || 'all'
     )
 });
