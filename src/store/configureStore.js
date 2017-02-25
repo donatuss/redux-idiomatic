@@ -5,13 +5,6 @@ import createLogger from "redux-logger";
 
 import todoApp from '../reducers';
 
-/*
-const thunk = (store) => (next) => (action) =>
-    typeof action === 'function' ?
-        action(store.dispatch, store.getState) :
-        next(action);
-*/
-
 const configureStore = () => {
     
     const middlewares = [promise, thunk];
