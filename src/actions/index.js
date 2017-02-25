@@ -1,4 +1,5 @@
 import * as api from '../api';
+import { getIsFetching } from '../reducers';
 
 const v4 = require('uuid/v4');
 
@@ -25,7 +26,10 @@ const requestTodos = (filter) => ({
     filter
 });
 
-export const fetchTodos = (filter) => (dispatch) => {
+export const fetchTodos = (filter) => (dispatch, getState) => {
+    if(getIsFetching(getState(), filter)){
+        return Promise.resolve();
+    }
     dispatch(requestTodos(filter));
 
     return api.fetchTodos(filter).then(response =>
