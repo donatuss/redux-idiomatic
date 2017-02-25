@@ -1,5 +1,8 @@
+import {normalize} from 'normalizr';
+
 import * as api from '../api';
 import {getIsFetching} from '../reducers';
+import * as schema from './schema';
 
 export const toggleTodo = (id) => ({
     type: 'TOGGLE_TODO',
@@ -21,7 +24,7 @@ export const fetchTodos = (filter) => (dispatch, getState) => {
             dispatch({
                 type: 'FETCH_TODOS_SUCCESS',
                 filter,
-                response
+                response: normalize(response, schema.arraysOfTodos)
             })
         },
         error => {
@@ -36,8 +39,9 @@ export const fetchTodos = (filter) => (dispatch, getState) => {
 
 export const addTodo = (text) => (dispatch) =>
     api.addTodo(text).then(response => {
+        console.log(normalize(response, schema.todo));
         dispatch({
             type: 'ADD_TODO_SUCCESS',
-            response,
+            response: normalize(response, schema.todo),
         });
     });
